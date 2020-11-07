@@ -9,20 +9,17 @@ import { TodoComponent } from './todo/todo.component';
 import { LoadDataComponent } from './load-data/load-data.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MarkerService } from './marker.service';
+import { PopUpService } from './pop-up.service';
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     MapComponent,
     TodoComponent,
-    LoadDataComponent
+    LoadDataComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule
-  ],
-  providers: [MarkerService],
-  bootstrap: [AppComponent]
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  providers: [MarkerService, PopUpService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
