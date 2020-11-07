@@ -7,7 +7,8 @@ import { HomeComponent } from './home/home.component';
 import { MapComponent } from './map/map.component';
 import { TodoComponent } from './todo/todo.component';
 import { LoadDataComponent } from './load-data/load-data.component';
-
+import { HttpClientModule } from '@angular/common/http';
+import { MarkerService } from './marker.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,9 +19,10 @@ import { LoadDataComponent } from './load-data/load-data.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [MarkerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
