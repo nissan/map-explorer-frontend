@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LoadDataComponent } from './load-data.component';
+import { NycTaximapComponent } from './nyc-taximap.component';
 
-describe('LoadDataComponent', () => {
-  let component: LoadDataComponent;
-  let fixture: ComponentFixture<LoadDataComponent>;
+describe('NycTaximapComponent', () => {
+  let component: NycTaximapComponent;
+  let fixture: ComponentFixture<NycTaximapComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LoadDataComponent ]
+      declarations: [ NycTaximapComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LoadDataComponent);
+    fixture = TestBed.createComponent(NycTaximapComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
