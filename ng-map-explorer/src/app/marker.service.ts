@@ -47,7 +47,7 @@ export class MarkerService {
   }
 
   makeTaxiCircleMarkers(map: L.Map): void {
-    this.http.get("http://localhost:4001/taxi-trip/geojson?limit=100").subscribe((res: lineStringTaxiTripFeatureCollection) => {
+    this.http.get("taxi-trip/geojson?limit=100").subscribe((res: lineStringTaxiTripFeatureCollection) => {
       console.log(res);
       for (const c of res.features) {
         const tripStartLat = c.geometry.coordinates[0][0];
