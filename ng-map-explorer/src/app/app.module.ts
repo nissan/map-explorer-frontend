@@ -10,6 +10,7 @@ import { LoadDataComponent } from './load-data/load-data.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MarkerService } from './marker.service';
 import { PopUpService } from './pop-up.service';
+import { ShapeService } from './shape.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,7 +20,7 @@ import { PopUpService } from './pop-up.service';
     LoadDataComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
-  providers: [MarkerService, PopUpService],
+  providers: [MarkerService, PopUpService, ShapeService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
