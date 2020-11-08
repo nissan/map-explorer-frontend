@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import * as L from 'leaflet';
 import { PopUpService } from './pop-up.service';
+import { lineStringTaxiTripFeatureCollection, taxiTripProperties } from './common/taxitripFeatures';
 
 @Injectable({
   providedIn: 'root',
@@ -41,6 +42,31 @@ export class MarkerService {
         });
         circle.bindPopup(this.popUpService.makeCapitalPopup(c.properties));
         circle.addTo(map);
+      }
+    });
+  }
+
+  makeTaxiCircleMarkers(map: L.Map): void {
+    this.http.get("http://localhost:4001/taxi-trip/geojson?limit=100").subscribe((res: lineStringTaxiTripFeatureCollection) => {
+      console.log(res);
+      for (const c of res.features) {
+        const tripStartLat = c.geometry.coordinates[0][0];
+        const tripStartLon = c.geometry.coordinates[0][1];
+        const tripEndLat = c.geometry.coordinates[1][0];
+        const tripEndLon = c.geometry.coordinates[1][1];
+
+        const circle1 = L.circleMarker([tripStartLon, tripStartLat], {
+          radius: 10,
+          color:'#0000FF'
+        });
+        circle1.bindPopup(this.popUpService.makeTaxiTripStartPopup(c.properties));
+        circle1.addTo(map);
+        const circle2 = L.circleMarker([tripEndLon, tripEndLat], {
+          radius: 10,
+          color: '#FF0000'
+        });
+        circle2.bindPopup(this.popUpService.makeTaxiTripEndPopup(c.properties));
+        circle2.addTo(map);
       }
     });
   }

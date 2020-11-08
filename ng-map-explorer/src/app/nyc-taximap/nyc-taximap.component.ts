@@ -34,12 +34,7 @@ export class NycTaximapComponent implements OnInit {
   ngOnInit(): void {}
   ngAfterViewInit(): void {
     this.initMap();
-    // this.markerService.makeCapitalMarkers(this.map);
-    this.markerService.makeCapitalCircleMarkers(this.map);
-    this.shapeService.getStateShapes().subscribe((states) => {
-      this.states = states;
-      this.initStatesLayer();
-    });
+    this.markerService.makeTaxiCircleMarkers(this.map);
 
     const tiles = L.tileLayer(
       'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
@@ -55,51 +50,10 @@ export class NycTaximapComponent implements OnInit {
 
   private initMap(): void {
     this.map = L.map('map', {
-      center: [40.774048,-73.874374], //used random row from data to set to NY note lat/long is format
-      zoom: 8,
+      center: [40.5,-74], //used random row from data to set to NY note lat/long is format
+      zoom: 9,
     });
   }
 
-  private initStatesLayer() {
-    const stateLayer = L.geoJSON(this.states, {
-      style: (feature) => ({
-        weight: 3,
-        opacity: 0.5,
-        color: '#008f68',
-        fillOpacity: 0.8,
-        fillColor: '#6DB65B',
-      }),
-
-      onEachFeature: (feature, layer) =>
-        layer.on({
-          mouseover: (e) => this.highlightFeature(e),
-          mouseout: (e) => this.resetFeature(e),
-        }),
-    });
-    this.map.addLayer(stateLayer);
-    stateLayer.bringToBack();
-  }
-
-  private highlightFeature(e) {
-    const layer = e.target;
-    layer.setStyle({
-      weight: 10,
-      opacity: 1.0,
-      color: '#DFA612',
-      fillOpacity: 1.0,
-      fillColor: '#FAE042',
-    });
-  }
-
-  private resetFeature(e) {
-    const layer = e.target;
-    layer.setStyle({
-      weight: 3,
-      opacity: 0.5,
-      color: '#008f68',
-      fillOpacity: 0.8,
-      fillColor: '#6DB65B',
-    });
-  }
 }
 // reference https://www.digitalocean.com/community/tutorials?q=building+maps+in+angular+using+leaflet
